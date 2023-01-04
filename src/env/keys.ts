@@ -1,21 +1,27 @@
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { mapEnvironmentKeys } from 'src/environment/utils';
+import { mapEnvironmentKeys } from 'src/env/utils';
 
 export class Environment {
   @IsString()
-  ENV: string = undefined;
+  ENV: string;
 
   @Transform(({ value }) => Number(value))
   @IsNumber()
-  PORT: number = undefined;
+  PORT: number;
 
   @IsString()
-  DB_URI: string = undefined;
+  DB_URI: string;
 
   @Transform(({ value }) => value === 'true')
   @IsBoolean()
-  SHOW_DOCS: boolean = undefined;
+  SHOW_DOCS: boolean;
+
+  @IsString()
+  AUTH0_ISSUER: string;
+
+  @IsString()
+  AUTH0_AUDIENCE: string;
 }
 
 export const ENV = mapEnvironmentKeys<Environment>(Environment);

@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { validate } from 'environment';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { validate } from 'env';
+import { DatabaseModule } from 'database';
+import { AuthModule } from 'app/auth';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -11,12 +13,13 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       isGlobal: true,
       validate: validate,
     }),
-    // DatabaseModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: true,
     }),
+    DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [],

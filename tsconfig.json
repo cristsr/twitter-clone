@@ -18,8 +18,9 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "environment": ["./src/environment"],
+      "env": ["./src/env"],
       "database": ["./src/database"],
+      "app/*": ["./src/app/*"],
     }
   }
 }
