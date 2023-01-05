@@ -21,6 +21,7 @@
       "env": ["./src/env"],
       "database": ["./src/database"],
       "app/*": ["./src/app/*"],
+      "utils": ["./src/utils"]
     }
   }
 }
